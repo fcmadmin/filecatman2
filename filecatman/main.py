@@ -604,22 +604,22 @@ class main():
                 filePaths = list()
                 for line in Lines:
                     if len(line.strip()) > 0: filePaths.append(line.strip())
+        elif self.args.fromdir:
+            if os.path.isdir(self.args.fromdir):
+                folderPaths = list()
+                for path in os.listdir(self.args.fromdir):
+                    filePath = os.path.join(self.args.fromdir, path)
+                    if os.path.isfile(filePath): folderPaths.append(filePath)
+                filePaths = folderPaths
         elif self.args.multiple:
             if len(self.args.multiple[0]) > 0:
                 filePaths = self.args.multiple[0]
         elif filePathArg:
-            if os.path.isdir(filePathArg):
-                folderPaths = list()
-                for path in os.listdir(filePathArg):
-                    filePath = os.path.join(filePathArg, path)
-                    if os.path.isfile(filePath): folderPaths.append(filePath)
-                filePaths = folderPaths
-            else:
-                itemsList = list()
-                for x in range(filePathArgNum, len(sys.argv)):
-                    argVar = eval('self.args.command{0}'.format(x))
-                    if argVar: itemsList.append(argVar)
-                filePaths = itemsList
+            itemsList = list()
+            for x in range(filePathArgNum, len(sys.argv)):
+                argVar = eval('self.args.command{0}'.format(x))
+                if argVar: itemsList.append(argVar)
+            filePaths = itemsList
         if filePaths:
             if not self.filecatmanActions.get('item'): self.filecatmanActions['item'] = dict()
             self.filecatmanActions['item']['delete'] = {"filepath": filePaths}
@@ -976,6 +976,14 @@ class main():
                 filePaths = list()
                 for line in Lines:
                     if len(line.strip()) > 0: filePaths.append(line.strip())
+        elif self.args.fromdir:
+            if os.path.isdir(self.args.fromdir):
+                folderPaths = list()
+                for dirpath, dirs, files in os.walk(self.args.fromdir):
+                    for filename in files:
+                        fname = os.path.join(dirpath, filename)
+                        if os.path.isfile(fname): folderPaths.append(fname)
+                filePaths = folderPaths
         elif self.args.multiple:
             if len(self.args.multiple[0]) > 0: filePaths = self.args.multiple[0]
         elif filePathArg:
@@ -1153,6 +1161,7 @@ filecatman [options] {0} [item id / filepath] ... [{0} options]
 --primarycategory [source]    Set item primary category
 --synchdatewithfile      Synchronise item date with file modification date
 --synchmd5withfile      Synchronise item md5 with file md5
+--fromdir [path]          Update all files in a directory recursively
 --fromfile [path]          Update multiple items listed in a text file
 '''.format(command))
                 case "search" | "items" | "item search" | "item list" | "item ls":
@@ -1290,6 +1299,7 @@ filecatman [options] {0} [{0} options]
 filecatman [options] {0} [item id / filepath] ... [{0} options]
 \nOptions for filecatman {0}:
 --fromfile             Delete all items listed in text file
+--fromdir             Delete all items in a directory
                        '''.format(command))
                 case "item copyrel":
                     print('''\nUsage for filecatman {0}:
