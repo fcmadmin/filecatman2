@@ -1,0 +1,640 @@
+{
+    "Filecatman Version": "2.0",
+    "Items": [
+        {
+            "Iden": 1,
+            "Name": "36202752182_a98d7dcccb_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                2,
+                4,
+                9,
+                11,
+                13,
+                14
+            ],
+            "Md5": "cb234fc0b84896d3ee00eb6f86f4f2db"
+        },
+        {
+            "Iden": 2,
+            "Name": "3229021282_bb35bf7072_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                2,
+                4,
+                15,
+                17,
+                18
+            ],
+            "Md5": "b3a4ec97b505707f621b92f980b78555"
+        },
+        {
+            "Iden": 3,
+            "Name": "1332185957_493eed74c1_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                4,
+                10,
+                20,
+                28,
+                30
+            ],
+            "Md5": "a5de5b7a74e58c29781042ae003c23fb"
+        },
+        {
+            "Iden": 4,
+            "Name": "jack-russel-4063990_960_720.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                8
+            ],
+            "Md5": "bb63e379a42e34478eb080c8e189928d"
+        },
+        {
+            "Iden": 5,
+            "Name": "6066333941_33ce87f72d_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                10,
+                17,
+                31,
+                32,
+                33
+            ],
+            "Md5": "a2fb28b7cbe87a65da6bfeab9cea00fb"
+        },
+        {
+            "Iden": 6,
+            "Name": "17307948799_10fac8502a_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                4,
+                6,
+                17,
+                21,
+                26,
+                27
+            ],
+            "Md5": "aab018876075328a600db70c766df2ab"
+        },
+        {
+            "Iden": 7,
+            "Name": "91356682_29fa0dbd0b_o.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                2,
+                4,
+                9,
+                13,
+                15,
+                16
+            ],
+            "Md5": "c535974df266304d44986f0829c681ef"
+        },
+        {
+            "Iden": 8,
+            "Name": "15486937779_319a1c18b7_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                2,
+                4,
+                9,
+                10,
+                11,
+                12
+            ],
+            "Md5": "6d165e2be2290d51d51d5613d35effb4"
+        },
+        {
+            "Iden": 9,
+            "Name": "41045830180_e3baeda3a8_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                4,
+                10,
+                21,
+                24,
+                25,
+                26
+            ],
+            "Md5": "91d19be526fa0b29b57bc2137b32e4f0"
+        },
+        {
+            "Iden": 10,
+            "Name": "dog-2029214_960_720.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ],
+            "Md5": "1b4f6dc32e4573342d1add82bc92e103"
+        },
+        {
+            "Iden": 11,
+            "Name": "4341520006_98ca0ee5d0_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                4,
+                17,
+                21,
+                22,
+                23
+            ],
+            "Md5": "c732141ba19a2f982cc3fcb502659294"
+        },
+        {
+            "Iden": 12,
+            "Name": "5048591021_761cde7e04_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                6,
+                17,
+                34,
+                35
+            ],
+            "Md5": "81e0831e17ca2fd20e9c13ff3812a80e"
+        },
+        {
+            "Iden": 13,
+            "Name": "2149863682_432f862b47_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                4,
+                6,
+                17,
+                28,
+                29
+            ],
+            "Md5": "497c1b164462720fd8449b813b030756"
+        },
+        {
+            "Iden": 14,
+            "Name": "4992098025_d882bdd7ae_z.jpg",
+            "Type": "Image",
+            "Ext": "jpg",
+            "Source": "",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                4,
+                19,
+                20,
+                21,
+                22
+            ],
+            "Md5": "f19c538b9acb845fff2e1d5a3078fd2d"
+        },
+        {
+            "Iden": 15,
+            "Name": "Pixabay%20License",
+            "Type": "Weblink",
+            "Ext": "desktop",
+            "Source": "https%3A//pixabay.com/service/license/",
+            "ModificationTime": "0000-00-00 00:00:00",
+            "Description": "",
+            "PrimaryCategory": 5,
+            "Relations": [
+                5
+            ]
+        },
+        {
+            "Iden": 16,
+            "Name": "Attribution-NonCommercial-ShareAlike%202.0%20Generic",
+            "Type": "Weblink",
+            "Ext": "desktop",
+            "Source": "https%3A//creativecommons.org/licenses/by-nc-sa/2.0/",
+            "ModificationTime": "0000-00-00 00:00:00",
+            "Description": "",
+            "PrimaryCategory": 9,
+            "Relations": [
+                9
+            ]
+        },
+        {
+            "Iden": 17,
+            "Name": "Attribution%202.0%20Generic%20%28CC%20BY%202.0%29",
+            "Type": "Weblink",
+            "Ext": "desktop",
+            "Source": "https%3A//creativecommons.org/licenses/by/2.0/",
+            "ModificationTime": "0000-00-00 00:00:00",
+            "Description": "",
+            "PrimaryCategory": 17,
+            "Relations": [
+                17
+            ]
+        },
+        {
+            "Iden": 18,
+            "Name": "Attribution-NonCommercial%202.0%20Generic%20%28CC%20BY-NC%202.0%29",
+            "Type": "Weblink",
+            "Ext": "desktop",
+            "Source": "https%3A//creativecommons.org/licenses/by-nc/2.0/",
+            "ModificationTime": "0000-00-00 00:00:00",
+            "Description": "",
+            "PrimaryCategory": 20,
+            "Relations": [
+                20
+            ]
+        },
+        {
+            "Iden": 19,
+            "Name": "CC0%201.0%20Universal%20%28CC0%201.0%29%20Public%20Domain%20Dedication",
+            "Type": "Weblink",
+            "Ext": "desktop",
+            "Source": "https%3A//creativecommons.org/publicdomain/zero/1.0/",
+            "ModificationTime": "0000-00-00 00:00:00",
+            "Description": "",
+            "PrimaryCategory": 25,
+            "Relations": [
+                25
+            ]
+        },
+        {
+            "Iden": 20,
+            "Name": "Petfinder%20-%20Cat%20Breeds",
+            "Type": "Weblink",
+            "Ext": "desktop",
+            "Source": "https%3A//www.petfinder.com/cat-breeds/",
+            "ModificationTime": "0000-00-00 00:00:00",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                4,
+                21
+            ]
+        },
+        {
+            "Iden": 21,
+            "Name": "Dogtime%20-%20Dog%20Breeds",
+            "Type": "Weblink",
+            "Ext": "desktop",
+            "Source": "https%3A//dogtime.com/dog-breeds",
+            "ModificationTime": "0000-00-00 00:00:00",
+            "Description": "",
+            "PrimaryCategory": 1,
+            "Relations": [
+                1,
+                2,
+                4
+            ]
+        }
+    ],
+    "Categories": {
+        "1": {
+            "Iden": 1,
+            "Name": "animal",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 16
+        },
+        "2": {
+            "Iden": 2,
+            "Name": "dog",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 7
+        },
+        "3": {
+            "Iden": 3,
+            "Name": "jackrussellterrier",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 2
+        },
+        "4": {
+            "Iden": 4,
+            "Name": "pet",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 14
+        },
+        "5": {
+            "Iden": 5,
+            "Name": "pixabay",
+            "Taxonomy": "license",
+            "Description": null,
+            "Parent": null,
+            "Count": 3
+        },
+        "6": {
+            "Iden": 6,
+            "Name": "white",
+            "Taxonomy": "color",
+            "Description": null,
+            "Parent": null,
+            "Count": 5
+        },
+        "7": {
+            "Iden": 7,
+            "Name": "kkolosov",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "8": {
+            "Iden": 8,
+            "Name": "ella87",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "9": {
+            "Iden": 9,
+            "Name": "Attribution-NonCommercial-ShareAlike%202.0%20Generic",
+            "Taxonomy": "license",
+            "Description": null,
+            "Parent": null,
+            "Count": 4
+        },
+        "10": {
+            "Iden": 10,
+            "Name": "brown",
+            "Taxonomy": "color",
+            "Description": null,
+            "Parent": null,
+            "Count": 4
+        },
+        "11": {
+            "Iden": 11,
+            "Name": "greyhound",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 2
+        },
+        "12": {
+            "Iden": 12,
+            "Name": "mtsofan",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "13": {
+            "Iden": 13,
+            "Name": "grey",
+            "Taxonomy": "color",
+            "Description": null,
+            "Parent": null,
+            "Count": 2
+        },
+        "14": {
+            "Iden": 14,
+            "Name": "martynmorgan",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "15": {
+            "Iden": 15,
+            "Name": "alaskanmalamute",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 2
+        },
+        "16": {
+            "Iden": 16,
+            "Name": "red.wolf",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "17": {
+            "Iden": 17,
+            "Name": "Attribution%202.0%20Generic%20%28CC%20BY%202.0%29",
+            "Taxonomy": "license",
+            "Description": null,
+            "Parent": null,
+            "Count": 7
+        },
+        "18": {
+            "Iden": 18,
+            "Name": "juliaballarin",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "19": {
+            "Iden": 19,
+            "Name": "andreaskomodromos",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "20": {
+            "Iden": 20,
+            "Name": "Attribution-NonCommercial%202.0%20Generic%20%28CC%20BY-NC%202.0%29",
+            "Taxonomy": "license",
+            "Description": null,
+            "Parent": null,
+            "Count": 3
+        },
+        "21": {
+            "Iden": 21,
+            "Name": "cat",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 5
+        },
+        "22": {
+            "Iden": 22,
+            "Name": "siamese",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 2
+        },
+        "23": {
+            "Iden": 23,
+            "Name": "nh53",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "24": {
+            "Iden": 24,
+            "Name": "andymiccone",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "25": {
+            "Iden": 25,
+            "Name": "CC0%201.0%20Universal%20%28CC0%201.0%29%20Public%20Domain%20Dedication",
+            "Taxonomy": "license",
+            "Description": null,
+            "Parent": null,
+            "Count": 2
+        },
+        "26": {
+            "Iden": 26,
+            "Name": "domestic",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 2
+        },
+        "27": {
+            "Iden": 27,
+            "Name": "hollyocchipinti",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "28": {
+            "Iden": 28,
+            "Name": "mouse",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 2
+        },
+        "29": {
+            "Iden": 29,
+            "Name": "reneschwietzke",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "30": {
+            "Iden": 30,
+            "Name": "bby_",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "31": {
+            "Iden": 31,
+            "Name": "leszekleszczynski",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "32": {
+            "Iden": 32,
+            "Name": "lion",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "33": {
+            "Iden": 33,
+            "Name": "wild",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "34": {
+            "Iden": 34,
+            "Name": "chicken",
+            "Taxonomy": "tag",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        },
+        "35": {
+            "Iden": 35,
+            "Name": "stevenljohnson",
+            "Taxonomy": "author",
+            "Description": null,
+            "Parent": null,
+            "Count": 1
+        }
+    }
+}

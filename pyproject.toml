@@ -1,0 +1,30 @@
+[project]
+name = 'filecatman'
+description = "A file categorization management program"
+version = "2.0"
+requires-python = ">=3.10"
+authors = [
+    { name = "Rich T", email = "example@test.com" }
+]
+dependencies = [
+    'python-dateutil',
+    'python-magic-bin; sys_platform == "win32" or sys_platform == "darwin"',
+    'python-magic; sys_platform != "win32" and sys_platform != "darwin"',
+    'requests',
+    'urllib3',
+    'clean-text'
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+filecatman = "filecatman:filecatman_main"
+
+[tool.setuptools.package-data]
+filecatman = ["core/queries/*.sql"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+namespaces = false

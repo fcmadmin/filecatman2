@@ -1,0 +1,56 @@
+============
+ Filecatman 
+============
+
+A file categorization management program for command line and scripting use.
+
+Homepage: https://github.com/fcmadmin/filecatman2
+
+Author: Rich T
+
+==========================
+Installation Instructions:
+==========================
+
+Ensure python3.10+ is installed.
+
+Run from venv (recommended):
+	Linux in terminal:
+		1. $ python -m venv ./venv
+		2. $ source venv/bin/activate
+		3. $ pip install .
+		4. $ filecatman
+	Windows in admin CMD:
+		1. $ python -m venv .\venv
+		2. $ .\venv\Scripts\activate
+		3. $ pip install .
+		4. $ filecatman
+	Mac in terminal:
+		1. $ python -m venv ./venv
+		2. $ source venv/bin/activate
+		3. $ pip install .
+		4. $ filecatman
+
+Or install on OS:
+	Linux in terminal (Requires pip and python 3.10+):
+		1. $ sudo pip install .
+		2. $ filecatman
+	Windows in admin CMD (requires python 3.10+):
+		1. $ pip install .
+		2. (add the installation directory to the Windows PATH)
+		3. $ filecatman
+	Mac in terminal (requires python 3.10+):
+		1. $ sudo python -m pip install .
+		2. $ filecatman
+
+Or run from source:
+	1. $ pip install -r requirements.txt
+	2. $ python maindev.py
+
+===================
+Usage Instructions:
+===================
+
+To see usage and command instructions: $ filecatman --help
+
+
