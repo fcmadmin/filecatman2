@@ -102,6 +102,7 @@ class main():
     parser.add_argument("--removeitems", help=argparse.SUPPRESS, nargs="+", action="append", dest="removeitems")
     parser.add_argument("--withitems", help=argparse.SUPPRESS, nargs="+", action="append", dest="withitems")
     parser.add_argument("--withoutitems", help=argparse.SUPPRESS, nargs="+", action="append", dest="withoutitems")
+    parser.add_argument("--withanyitems", help=argparse.SUPPRESS, nargs="+", action="append", dest="withanyitems")
     parser.add_argument("--with", help=argparse.SUPPRESS, nargs="+", action="append", dest="argwith")
     parser.add_argument("--withany", help=argparse.SUPPRESS, nargs="+", action="append", dest="argwithany")
     parser.add_argument("--from", help=argparse.SUPPRESS, nargs="+", action="append", dest="argfrom")
@@ -844,6 +845,7 @@ class main():
         if self.args.countlessthan: self.filecatmanActions['searchcats']['countlessthan'] = self.args.countlessthan
         if self.args.withitems: self.filecatmanActions['searchcats']['withitems'] = self.args.withitems[0]
         if self.args.withoutitems: self.filecatmanActions['searchcats']['withoutitems'] = self.args.withoutitems[0]
+        if self.args.withanyitems: self.filecatmanActions['searchcats']['withanyitems'] = self.args.withanyitems[0]
         if self.args.listids: self.filecatmanActions['searchcats']['listids'] = True
         if self.args.last: self.filecatmanActions['searchcats']['last'] = self.args.last
         if self.args.first: self.filecatmanActions['searchcats']['first'] = self.args.first
@@ -1249,6 +1251,7 @@ filecatman [options] {0} [phrase] [{0} options]
 --countlessthan     With item count less than
 --withitems [item id / filepath] ...         Include items
 --withoutitems [item id / filepath] ...          Exclude items
+--withanyitems [item id / filepath] ...           Include categories with any of these items
 --listids          List IDs of search results
 --last          Last number of categories to return 
 --first          First number of categories to return

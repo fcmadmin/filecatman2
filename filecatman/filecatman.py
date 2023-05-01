@@ -1166,6 +1166,23 @@ class Filecatman:
                               "WHERE ( tr.item_id = '{}' )".format(itemIden)
                     where.append("( t.term_id {0} (\n{1}\n) )".format(operator, SQLItem))
 
+        _items = list()
+        if data.get("withanyitems"): _items.append((data['withanyitems'], "IN"))
+        if len(_items) > 0:
+            for items, operator in _items:
+                __itemIdens = list()
+                for item in items:
+                    itemQuery = self.getItemFromPath(item)
+                    if itemQuery: __itemIdens.append(itemQuery[FCM.ItemCol['Iden']])
+                    else: self.logger.warning("Item not found")
+                if len(__itemIdens) > 0:
+                    SQLItem = "SELECT tr.term_id \n" \
+                              "FROM term_relationships AS tr \n" \
+                              "INNER JOIN terms AS t ON (t.term_id = tr.term_id) \n" \
+                              "WHERE ( tr.item_id = '{}' )".format(__itemIdens.pop(0))
+                    for itemiden in __itemIdens: SQLItem += " OR ( tr.item_id = '{0}' )".format(itemiden)
+                    where.append("( t.term_id {0} (\n{1}\n) )".format(operator, SQLItem))
+
         if data.get("withduplicate"):
             duplicateCol = data.get("withduplicate").lower()
             SQLDuplicate = '''
