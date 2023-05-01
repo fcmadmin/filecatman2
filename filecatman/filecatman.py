@@ -1166,23 +1166,6 @@ class Filecatman:
                               "WHERE ( tr.item_id = '{}' )".format(itemIden)
                     where.append("( t.term_id {0} (\n{1}\n) )".format(operator, SQLItem))
 
-        _items = list()
-        if data.get("withanyitems"): _items.append((data['withanyitems'], "IN"))
-        if len(_items) > 0:
-            for items, operator in _items:
-                __itemIdens = list()
-                for item in items:
-                    itemQuery = self.getItemFromPath(item)
-                    if itemQuery: __itemIdens.append(itemQuery[FCM.ItemCol['Iden']])
-                    else: self.logger.warning("Item not found")
-                if len(__itemIdens) > 0:
-                    SQLItem = "SELECT tr.term_id \n" \
-                              "FROM term_relationships AS tr \n" \
-                              "INNER JOIN terms AS t ON (t.term_id = tr.term_id) \n" \
-                              "WHERE ( tr.item_id = '{}' )".format(__itemIdens.pop(0))
-                    for itemiden in __itemIdens: SQLItem += " OR ( tr.item_id = '{0}' )".format(itemiden)
-                    where.append("( t.term_id {0} (\n{1}\n) )".format(operator, SQLItem))
-
         if data.get("withduplicate"):
             duplicateCol = data.get("withduplicate").lower()
             SQLDuplicate = '''
@@ -1212,7 +1195,6 @@ class Filecatman:
         else:
             sql += "ORDER BY t.term_count ASC"
 
-
         categoriesQuery = self.db.cur.execute(sql).fetchall()
         if len(categoriesQuery) < 1:
             if data.get('count'): print(0)
@@ -1227,6 +1209,21 @@ class Filecatman:
         #         categoriesQuery.sort(key=lambda a: a[keys[sortBy]], reverse = data.get("desc"))
         #         print(categoriesQuery)
 
+        _items = list()
+        if data.get("withanyitems"): _items.append((data['withanyitems'], "IN"))
+        if len(_items) > 0:
+            for items, operator in _items:
+                _categoryIdens = list()
+                for item in items:
+                    itemQuery = self.getItemFromPath(item)
+                    if itemQuery:
+                        relations = self.db.selectRelations(itemID=itemQuery[FCM.ItemCol['Iden']])
+                        for rel in relations: _categoryIdens.append(rel[0])
+                    else: self.logger.warning("Item not found")
+                if len(_categoryIdens) > 0:
+                    _categoryIdens = [*set(_categoryIdens)]
+                    _categoryIdens.sort()
+                    categoriesQuery = [i for i in categoriesQuery if i[0] in _categoryIdens]
 
         import random
         if data.get("randomorder"): random.shuffle(categoriesQuery)
