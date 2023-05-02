@@ -342,52 +342,52 @@ class main():
                         self.printHelp()
                         # quit()
                         pass
-            case "category":
+            case "category" | "cat":
                 self.filecatmanActions['category'] = dict()
                 match self.args.command2:
                     case "list" | "ls" | "search":
-                        self.commandCategorySearch(self.args.command3, "category "+self.args.command2)
+                        self.commandCategorySearch(self.args.command3, self.args.command1+" "+self.args.command2)
                     case "create":
-                        self.commandCategoryCreate(3)
+                        self.commandCategoryCreate(3, self.args.command1+" "+self.args.command2)
                     case "inspect":
                         if self.args.help:
-                            self.printHelp("category inspect")
+                            self.printHelp(self.args.command1+" inspect")
                             quit()
                         if self.args.command3:
                             const.LOGGERLEVEL = "none"
                             self.filecatmanActions['category']["inspect"] = {"category": self.args.command3}
                         else:
-                            self.printHelp("category inspect")
+                            self.printHelp(self.args.command1+" inspect")
                             quit()
                     case "launch":
                         if self.args.help:
-                            self.printHelp("category launch")
+                            self.printHelp(self.args.command1+" launch")
                             quit()
                         if self.args.command3:
                             self.filecatmanActions['category']['launch'] = {"category": self.args.command3}
                         else:
-                            self.printHelp("category launch")
+                            self.printHelp(self.args.command1+" launch")
                             quit()
                     case "rename":
                         if self.args.help:
-                            self.printHelp("category rename")
+                            self.printHelp(self.args.command1+" rename")
                             quit()
                         if self.args.command3 and self.args.command4:
                             filePath = self.args.command3
                             newName = self.args.command4
                             self.filecatmanActions['category']['rename'] = {"category": filePath, "newname": newName}
                         else:
-                            self.printHelp("category rename")
+                            self.printHelp(self.args.command1+" rename")
                             quit()
                     case "update":
-                        self.commandCategoryUpdate(3)
+                        self.commandCategoryUpdate(3, self.args.command1+" "+self.args.command2)
                     case "delete":
-                        self.commandCategoryDelete(3)
+                        self.commandCategoryDelete(3, self.args.command1+" "+self.args.command2)
                     case "delrel":
-                        self.commandCategoryDelRel(3)
+                        self.commandCategoryDelRel(3, self.args.command1+" "+self.args.command2)
                     case "copyrel":
                         if self.args.help:
-                            self.printHelp("category copyrel")
+                            self.printHelp(self.args.command1+" copyrel")
                             quit()
                         if self.args.command3 and self.args.argfrom:
                             self.filecatmanActions['category']['copyrel'] = {
@@ -395,33 +395,33 @@ class main():
                                 "from": self.args.argfrom[0]
                             }
                         else:
-                            self.printHelp("category copyrel")
+                            self.printHelp(self.args.command1+" copyrel")
                             quit()
                     case "view":
                         if self.args.help:
-                            self.printHelp("category view")
+                            self.printHelp(self.args.command1+" view")
                             quit()
                         const.LOGGERLEVEL = "none"
                         if self.args.command3:
                             self.filecatmanActions['category']['view'] = {"category": self.args.command3}
                             if self.args.manager: self.filecatmanActions['category']['view']['openinmanager'] = True
                         else:
-                            self.printHelp("category view")
+                            self.printHelp(self.args.command1+" view")
                             quit()
                     case "merge":
                         if self.args.help:
-                            self.printHelp("category merge")
+                            self.printHelp(self.args.command1+" merge")
                             quit()
                         if self.args.command3 and self.args.argwith:
                             self.filecatmanActions['category']['merge'] = {
                                 "category": self.args.command3,
                                 "with": self.args.argwith[0]}
                         else:
-                            self.printHelp("category merge")
+                            self.printHelp(self.args.command1+" merge")
                             quit()
                     case "synch":
                         if self.args.help:
-                            self.printHelp("category synch")
+                            self.printHelp(self.args.command1+" synch")
                             quit()
                         categoriesList = list()
                         if self.args.command3 and self.args.command4:
@@ -432,7 +432,7 @@ class main():
                                 "categories": categoriesList
                             }
                         else:
-                            self.printHelp("category synch")
+                            self.printHelp(self.args.command1+" synch")
                             quit()
                     case _:
                         const.LOGGERLEVEL = "none"
@@ -492,8 +492,8 @@ class main():
                 self.commandItemUpdate(2, "update")
             case "search" | "items":
                 self.commandItemSearch(self.args.command2, self.args.command1)
-            case "categories":
-                self.commandCategorySearch(self.args.command2, "categories")
+            case "categories" | "cats":
+                self.commandCategorySearch(self.args.command2, self.args.command1)
             case "delete":
                 self.commandItemDelete(2)
             case "download":
@@ -534,9 +534,9 @@ class main():
         if self.args.autoload: app.config['autoloadDatabase'] = True
         app.close()
 
-    def commandCategoryDelRel(self,categoriesArgNum):
+    def commandCategoryDelRel(self,categoriesArgNum, command):
         if self.args.help:
-            self.printHelp("category delrel")
+            self.printHelp(command)
             quit()
         categoriesArg = eval('self.args.command{0}'.format(str(categoriesArgNum)))
         categories = None
@@ -549,12 +549,12 @@ class main():
         if categories:
             self.filecatmanActions['category']['delrel'] = {"category": categories}
         else:
-            self.printHelp("category delrel")
+            self.printHelp(command)
             quit()
 
-    def commandCategoryDelete(self,categoriesArgNum):
+    def commandCategoryDelete(self,categoriesArgNum, command):
         if self.args.help:
-            self.printHelp('category delete')
+            self.printHelp(command)
             quit()
         categoriesArg = eval('self.args.command{0}'.format(str(categoriesArgNum)))
         categories = None
@@ -570,7 +570,7 @@ class main():
         if categories:
             self.filecatmanActions['category']['delete'] = {"category": categories}
         else:
-            self.printHelp('category delete')
+            self.printHelp(command)
             quit()
 
     def commandItemDelRel(self, filePathArgNum):
@@ -791,9 +791,9 @@ class main():
         if filePathArg: self.filecatmanActions['searchtaxs']["searchterms"] = filePathArg
         if self.args.inspect: self.filecatmanActions['searchtaxs']['inspect'] = True
 
-    def commandCategoryUpdate(self, categoriesArgNum):
+    def commandCategoryUpdate(self, categoriesArgNum, command):
         if self.args.help:
-            self.printHelp("category update")
+            self.printHelp(command)
             quit()
         categoriesArg = eval('self.args.command{0}'.format(str(categoriesArgNum)))
         categories = None
@@ -808,12 +808,12 @@ class main():
             if self.args.additems: self.filecatmanActions['category']['update']['additems'] = self.args.additems[0]
             if self.args.removeitems: self.filecatmanActions['category']['update']['removeitems'] = self.args.removeitems[0]
         else:
-            self.printHelp("category update")
+            self.printHelp(command)
             quit()
 
-    def commandCategoryCreate(self, categoriesArgNum):
+    def commandCategoryCreate(self, categoriesArgNum, command):
         if self.args.help:
-            self.printHelp("category create")
+            self.printHelp(command)
             quit()
         categoriesArg = eval('self.args.command{0}'.format(str(categoriesArgNum)))
         categories = None
@@ -826,7 +826,7 @@ class main():
         if categories:
             self.filecatmanActions['category']['create'] = {"category": categories}
         else:
-            self.printHelp("category create")
+            self.printHelp(command)
             quit()
 
     def commandCategorySearch(self, filePathArg, command):
@@ -1095,8 +1095,8 @@ synchmd5    Synchronize MD5 of items with files
 synchdate   Synchronize date of items with files
 
 Run 'filecatman [options] item COMMAND --help' for more information on a command.''')
-                case "category":
-                    print('''\nCommands for filecatman category:
+                case "category" | "cat":
+                    print('''\nCommands for filecatman {0}:
 create      Create a category
 inspect     Inspect a category
 rename      Rename a category
@@ -1111,7 +1111,7 @@ search      Search for categories
 ls          List categories
 synch       Synchronize mulltiple category's relations
 
-Run 'filecatman [options] category COMMAND --help' for more information on a command.''')
+Run 'filecatman [options] {0} COMMAND --help' for more information on a command.'''.format(command))
                 case "taxonomy":
                     print('''\nCommands for filecatman taxonomy:
 merge      Merge a taxonomy with other taxonomies
@@ -1238,7 +1238,7 @@ filecatman [options] {0} [phrase] [{0} options]
 --size  Print total size of results
 --export  Export project data into specified directory
 '''.format(command))
-                case "categories" | "category search" | "category ls" | "category list":
+                case "categories" | "cats" | "category search" | "category ls" | "category list"| "cat search" | "cat ls" | "cat list":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [phrase] [{0} options]
 \nOptions for filecatman {0}:
@@ -1273,12 +1273,12 @@ filecatman [options] {0} [phrase] [{0} options] '''.format(command))
 filecatman [options] {0} [first item id / filepath] --with [other items] [{0} options]
 \nCopy the category relations of the [other items] into the [first item] and then delete the [other items]. 
 '''.format(command))
-                case "category merge":
+                case "category merge" | "cat merge":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [first category id / taxonomy:name] --with [other categories] [{0} options]
 \nCopy the item relations of the [other categories] into the [first category] and then delete the [other categories].
 '''.format(command))
-                case "category update":
+                case "category update" | "cat update":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [category id / taxonomy:name] ... [{0} options]
 \nOptions for filecatman {0}:
@@ -1311,26 +1311,26 @@ filecatman [options] {0} [item to copy to] --from [items to copy from] [{0} opti
 --taxonomies / --tax             Relations must be in these taxonomies
 --withouttaxonomies / --nottax             Relations must not be in these taxonomies
 '''.format(command))
-                case "category copyrel":
+                case "category copyrel" | "cat copyrel":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [first category id / taxonomy:name] --from [other categories] [{0} options]
 \nCopy item relations from [other categories] into the [first category].
 '''.format(command))
-                case "category delrel":
+                case "category delrel" | "cat delrel":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [category id / taxonomy:name] ... [{0} options]'''.format(command))
-                case "category create":
+                case "category create" | "cat create":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [taxonomy:name] ... [{0} options]
 \nCreate a new category or categories. Taxonomy can be ommited and the default taxonomy will be used.
 '''.format(command))
-                case "category delete":
+                case "category delete" | "cat delete":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [category id / taxonomy:name] ... [{0} options]'''.format(command))
-                case "category synch":
+                case "category synch" | "cat synch":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [category id / taxonomy:name] [category id / taxonomy:name] ...'''.format(command))
-                case "category view":
+                case "category view" | "cat view":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [category id / taxonomy:name] [{0} options]'''.format(command))
                 case "item rename":
@@ -1346,10 +1346,10 @@ filecatman [options] {0} [item id / filepath] [{0} options]'''.format(command))
                 case "item path":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [item id / filepath] [{0} options]'''.format(command))
-                case "category inspect":
+                case "category inspect" | "cat inspect":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [category id / taxonomy:name] ... [{0} options]'''.format(command))
-                case "category launch":
+                case "category launch" | "cat launch":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [category id / taxonomy:name] [{0} options]'''.format(command))
                 case "item view":
@@ -1369,7 +1369,7 @@ filecatman [options] item COMMAND lastitem [COMMAND options]'''.format(command))
                 case "item synchmd5" | "item synchdate":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0}'''.format(command))
-                case "category rename":
+                case "category rename" | "cat rename":
                     print('''\nUsage for filecatman {0}:
 filecatman [options] {0} [category id / taxonomy:name] [new name] [{0} options]
 '''.format(command))
