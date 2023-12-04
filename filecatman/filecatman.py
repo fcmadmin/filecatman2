@@ -671,6 +671,7 @@ class Filecatman:
         import json
         print(json.dumps(dbInfo, indent=4))
         self.db.close()
+        if self.importedMode: return dbInfo
 
     def inspectItem(self, data):
         self.logger.debug("Inspecting item")
@@ -1041,10 +1042,12 @@ class Filecatman:
 
     def searchTaxonomies(self, data):
         from filecatman.core.printcolours import bcolours
-        self.db.open()
+        if not data.get('keepDatabaseOpen'): self.db.open()
 
         taxonomyResults =  self.config['taxonomies']
         if data.get('searchterms'): taxonomyResults = [a for a in taxonomyResults if data['searchterms'] in a.tableName]
+
+        if self.importedMode or data.get('importedmode'): return taxonomyResults
 
         colData = list()
         colData.append(
@@ -1094,7 +1097,7 @@ class Filecatman:
                 print(color + itemRow + bcolours.ENDC)
             else:
                 print(itemRow)
-        self.db.close()
+        if not data.get('keepDatabaseOpen'): self.db.close()
 
 
 
@@ -1670,7 +1673,9 @@ class Filecatman:
         elif data.get('first'): searchResults = searchResults[:abs(int(data['first']))]
         if data.get('itemsperpage'):
             itemPages = chunks(searchResults,abs(int(data['itemsperpage'])))
-            if data.get('page'): searchResults = itemPages[abs(int(data['page']))+1]
+            if data.get('page'):
+                if int(data['page'])< 1: data['page'] = 1
+                searchResults = itemPages[abs(int(data['page']))-1]
             elif data.get('lastpage'): searchResults = itemPages[len(itemPages)-1]
             else: searchResults = itemPages[0]
 
@@ -2024,10 +2029,11 @@ class Filecatman:
             filePath = os.path.join(dataDir, dirType, str(fileID)+"."+desktopFileExt())
             if not createDesktopFile(filePath, unquote(data['name']), unquote(data['source'])):
                 self.logger.error("Unable to create desktop file")
+        if self.importedMode: itemCreated = self.getItemFromPath(str(fileID))
         if not keepDatabaseOpen:
             self.db.commit()
             self.db.close()
-        if self.importedMode: return fileID
+        if self.importedMode: return itemCreated
 
     def inspectCategory(self, data):
         catData = dict()
@@ -2102,7 +2108,8 @@ class Filecatman:
     def deleteItem(self, _data):
         import copy
         data = copy.deepcopy(_data)
-        self.db.open()
+
+        if not data.get('keepDatabaseOpen'): self.db.open()
         item = self.getItemFromPath(data['filepath'])
         if not item:
             self.logger.error("Item not found")
@@ -2113,8 +2120,10 @@ class Filecatman:
         fileID = item[FCM.ItemCol['Iden']]
         if self.db.deleteItem(fileID):
             if os.path.exists(filepath): deleteFile(self, filepath)
-        self.db.commit()
-        self.db.close()
+        if not data.get('keepDatabaseOpen'):
+            self.db.commit()
+            self.db.close()
+        if self.importedMode: return True
 
     def getCategoryFromInput(self, _categoryInput):
         category = None
@@ -2638,9 +2647,11 @@ class Filecatman:
                     filePath = os.path.join(dataDir, dirType, str(item[FCM.ItemCol['Iden']]) + "."+desktopFileExt())
                     if not createDesktopFile(filePath, unquote(item[FCM.ItemCol['Name']]), unquote(item[FCM.ItemCol['Source']])):
                         self.logger.error("Unable to create desktop file")
+        if self.importedMode: itemUpdated = self.getItemFromPath(str(item[FCM.ItemCol['Iden']]))
         if not keepDatabaseOpen:
             self.db.commit()
             self.db.close()
+        if self.importedMode: return itemUpdated
 
     def getSystemSpecifics(self):
         if sys.platform.startswith('linux'):
