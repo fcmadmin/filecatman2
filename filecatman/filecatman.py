@@ -708,6 +708,7 @@ class Filecatman:
         itemData['Filepath'] = filePath
         # itemData['FileMd5'] = getMD5FromFile(filePath)
         itemData['Size'] = os.stat(filePath).st_size
+        itemData['SizeNice'] = formatBytes(itemData['Size'])
 
         if not data.get('keepDatabaseOpen'): self.db.close()
 
@@ -1290,7 +1291,8 @@ class Filecatman:
                     printCol = itemRowData + col['spaces'][len(itemRowData):]
                     itemRow += printCol
                 if colouredRows:
-                    color = self.config['taxonomies'].get(result[2].capitalize()).colour
+                    colorTax = self.config['taxonomies'].get(result[2].capitalize())
+                    if colorTax: color = colorTax.colour
                     print(color+itemRow+bcolours.ENDC)
                 else:
                     print(itemRow)
@@ -1608,7 +1610,7 @@ class Filecatman:
                     newSearchResults.append(item)
             searchResults = newSearchResults
         if data.get('sortby') == "size" or data.get('sizemorethan') or data.get('sizelessthan') \
-                or "size" in additionalColumns or 'filedate' in additionalColumns or data.get('size'):
+                or "size" in additionalColumns or 'filedate' in additionalColumns or data.get('size') or data.get('sizenice'):
             newSearchResults = list()
             for index, item in enumerate(searchResults):
                 filepath = os.path.join(self.config['options']['default_data_dir'],
@@ -1624,7 +1626,7 @@ class Filecatman:
                 newCols = []
                 itemIndexLength = len(item) - 1
                 if data.get('sortby') == "size" or data.get('sizemorethan') or data.get('sizelessthan') \
-                        or "size" in additionalColumns or data.get('size'):
+                        or "size" in additionalColumns or data.get('size') or data.get('sizenice'):
                     newCols.append(file_stats.st_size)
                     itemIndexLength += 1
                     sizeIndex = itemIndexLength
@@ -1738,12 +1740,14 @@ class Filecatman:
                 filePath = os.path.join(dataDir, typeDir, str(itemIden) + "." + itemExt)
                 print(filePath)
         elif data.get('count'): print(str(len(searchResults)))
-        elif data.get('size'):
+        elif data.get('size') or data.get('sizenice'):
             totalSize = 0
             for searchItem in searchResults:
                 totalSize += searchItem[sizeIndex]
-            print(str(totalSize))
-            # print(formatBytes(totalSize))
+            if data.get('sizenice'):
+                print(formatBytes(totalSize))
+            else:
+                print(str(totalSize))
         elif data.get('timer'):
                 import time
                 timerEnd = time.perf_counter()

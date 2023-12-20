@@ -133,6 +133,7 @@ class main():
     parser.add_argument("--count", help=argparse.SUPPRESS, action="store_true", dest="count")
     parser.add_argument("--nocolour", help=argparse.SUPPRESS, action="store_true", dest="nocolour")
     parser.add_argument("--size", help=argparse.SUPPRESS, action="store_true", dest="size")
+    parser.add_argument("--sizenice", help=argparse.SUPPRESS, action="store_true", dest="sizenice")
     parser.add_argument("--timer", help=argparse.SUPPRESS, action="store_true", dest="timer")
     parser.add_argument("--bulk", help=argparse.SUPPRESS, action="store_true", dest="bulk")
     parser.add_argument("--last", help=argparse.SUPPRESS, action="store", dest="last")
@@ -937,6 +938,7 @@ class main():
         if self.args.md5file: self.filecatmanActions['search']['md5file'] = self.args.md5file
         if self.args.noemoji: self.filecatmanActions['search']['noemoji'] = True
         if self.args.size: self.filecatmanActions['search']['size'] = True
+        if self.args.sizenice: self.filecatmanActions['search']['sizenice'] = True
 
     def commandItemInspect(self, filePathArgNum, command):
         if self.args.help:
@@ -1236,6 +1238,7 @@ filecatman [options] {0} [phrase] [{0} options]
 --md5   Search for files with MD5 checksum
 --md5file   Get file MD5 and search database for match 
 --size  Print total size of results
+--sizenice  Print total size of results formatted
 --export  Export project data into specified directory
 '''.format(command))
                 case "categories" | "cats" | "category search" | "category ls" | "category list"| "cat search" | "cat ls" | "cat list":
