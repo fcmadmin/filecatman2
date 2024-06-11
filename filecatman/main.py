@@ -95,6 +95,7 @@ class main():
     parser.add_argument("--date", help=argparse.SUPPRESS, action="store", dest="setdate")
     parser.add_argument("--md5", help=argparse.SUPPRESS, action="store", dest="md5")
     parser.add_argument("--md5file", help=argparse.SUPPRESS, action="store", dest="md5file")
+    parser.add_argument("--md5changed", help=argparse.SUPPRESS, action="store_true", dest="md5changed")
 
     parser.add_argument("--itemcount", help=argparse.SUPPRESS, action="store", dest="itemcount")
     parser.add_argument("--withoutitemcount", help=argparse.SUPPRESS, action="store", dest="withoutitemcount")
@@ -936,6 +937,7 @@ class main():
         if self.args.withoutnullcol: self.filecatmanActions['search']['withoutnullcol'] = self.args.withoutnullcol[0]
         if self.args.md5: self.filecatmanActions['search']['md5'] = self.args.md5
         if self.args.md5file: self.filecatmanActions['search']['md5file'] = self.args.md5file
+        if self.args.md5changed: self.filecatmanActions['search']['md5changed'] = True
         if self.args.noemoji: self.filecatmanActions['search']['noemoji'] = True
         if self.args.size: self.filecatmanActions['search']['size'] = True
         if self.args.sizenice: self.filecatmanActions['search']['sizenice'] = True
@@ -1015,7 +1017,7 @@ class main():
         else:
             self.printHelp(command)
             quit()
-    
+
     def printHelp(self, command=None):
         if self.helpPrinted: return False
         self.helpPrinted = True
@@ -1237,6 +1239,7 @@ filecatman [options] {0} [phrase] [{0} options]
 --timer   Time taken to fetch results
 --md5   Search for files with MD5 checksum
 --md5file   Get file MD5 and search database for match 
+--md5changed    Search for files that have changed their MD5
 --size  Print total size of results
 --sizenice  Print total size of results formatted
 --export  Export project data into specified directory

@@ -689,15 +689,16 @@ class Filecatman:
         dataDir = self.config['options']['default_data_dir']
         relations = self.db.selectRelations(itemID=itemData['Iden'])
 
-        itemData['Relations'] = list()
-        relationsList = list()
-        for rel in relations:
-            category = self.db.selectCategory(catID=rel[0])
-            relationsList.append(category)
-        relationsList.sort(key=lambda a: a[1], reverse=False)
-        relationsList.sort(key=lambda a: a[2], reverse=False)
-        for category in relationsList:
-            itemData['Relations'].append(str(category[0])+" = "+str(category[2])+" : "+unquote(category[1]))
+        if not data.get('skiprelations'):
+            itemData['Relations'] = list()
+            relationsList = list()
+            for rel in relations:
+                category = self.db.selectCategory(catID=rel[0])
+                relationsList.append(category)
+            relationsList.sort(key=lambda a: a[1], reverse=False)
+            relationsList.sort(key=lambda a: a[2], reverse=False)
+            for category in relationsList:
+                itemData['Relations'].append(str(category[0])+" = "+str(category[2])+" : "+unquote(category[1]))
 
 
         relationsCount = len(relations)
@@ -1293,6 +1294,7 @@ class Filecatman:
                 if colouredRows:
                     colorTax = self.config['taxonomies'].get(result[2].capitalize())
                     if colorTax: color = colorTax.colour
+                    else: color = ""
                     print(color+itemRow+bcolours.ENDC)
                 else:
                     print(itemRow)
@@ -1599,6 +1601,24 @@ class Filecatman:
         #         if getMD5FromFile(filepath).startswith(data['md5']):
         #             newSearchResults.append(item)
         #     searchResults = newSearchResults
+
+
+
+        if data.get("md5changed"):
+            if data.get('last'):
+                searchResults = searchResults[-abs(int(data['last'])):]
+            elif data.get('first'):
+                searchResults = searchResults[:abs(int(data['first']))]
+            newSearchResults = list()
+            for index, item in enumerate(searchResults):
+                filepath = os.path.join(self.config['options']['default_data_dir'],
+                                        self.config['itemTypes'].dirFromNoun(item[2]),
+                                        str(item[0]) + '.' + item[5])
+                fileMD5 = getMD5FromFile(filepath)
+                itemMD5 = item[FCM.ItemCol['Md5']]
+                if fileMD5 != itemMD5: newSearchResults.append(item)
+            searchResults = newSearchResults
+
 
         if data.get("withmissingfile"):
             newSearchResults = list()
@@ -2042,21 +2062,23 @@ class Filecatman:
     def inspectCategory(self, data):
         catData = dict()
         if not data.get('category'): return False
-        self.db.open()
+        if not data.get('keepDatabaseOpen'): self.db.open()
         category, taxonomy = self.getCategoryFromInput(data.get("category"))
         if not category: raise Exception("Category not found")
         for colName in ('Iden','Name', 'Taxonomy', 'Description', 'Parent', 'Count'):
             catData[colName] = category[FCM.CatCol[colName]]
         if catData.get('Name'): catData['Name'] = unquote(catData['Name'])
-        relations = self.db.selectCategoryRelations(termID=catData['Iden'])
-        catData['Relations'] = list()
-        for rel in relations:
-            item = self.db.selectItem(rel[0])
-            catData['Relations'].append(item)
+        if not data.get('skiprelations'):
+            relations = self.db.selectCategoryRelations(termID=catData['Iden'])
+            catData['Relations'] = list()
+            for rel in relations:
+                item = self.db.selectItem(rel[0])
+                catData['Relations'].append(item)
 
-        self.db.commit()
-        self.db.close()
-
+        if not data.get('keepDatabaseOpen'):
+            self.db.commit()
+            self.db.close()
+        if self.importedMode or data.get('importedmode'): return catData
         import json
         print(json.dumps(catData, indent=4))
 
