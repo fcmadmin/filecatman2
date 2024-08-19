@@ -1494,6 +1494,41 @@ class Filecatman:
                     SQLTaxonomy += " AND ( tr.term_id = '{0}' )".format(categoryIden)
                     SQLWhere.append("( i.item_id {0} (\n{1}\n) )".format(operator, SQLTaxonomy))
 
+        _anytax = list()
+        if data.get("anytax"): _anytax.append((data['anytax'], "IN"))
+        if len(_anytax) > 0:
+            for categories, operator in _anytax:
+                __catIdens = list()
+                for cat in categories:
+                    for tax in self.config['taxonomies']:
+                        tax = tax.tableName
+                        catResults, taxonomy = self.getCategoryFromInput(tax+":"+cat)
+                        if catResults: __catIdens.append(catResults[0])
+                if len(__catIdens) > 0:
+                    if not data.get("withanycategories"):
+                        data['withanycategories'] = __catIdens
+                    else:
+                        for _iden in __catIdens: data['withanycategories'].append(_iden)
+
+        _catsearch = list()
+        if data.get("catsearch"): _catsearch.append((data['catsearch'], "IN"))
+        if len(_catsearch) > 0:
+            print(_catsearch)
+            for categories, operator in _catsearch:
+                __catIdens = list()
+                for cat in categories:
+                    catResults = self.searchCategories({"importedmode":1, "searchterms":cat})
+                    if catResults:
+                        for _catresult in catResults:
+                            __catIdens.append(_catresult[0])
+                if len(__catIdens) > 0:
+                    print(__catIdens)
+                    if not data.get("withanycategories"):
+                        data['withanycategories'] = __catIdens
+                    else:
+                        for _iden in __catIdens: data['withanycategories'].append(_iden)
+
+
         _categories = list()
         if data.get("withanycategories"): _categories.append((data['withanycategories'], "IN"))
         if len(_categories) > 0:
@@ -1514,6 +1549,9 @@ class Filecatman:
                     SQLAnyCats += sqlAnyCatsWhere
                     SQLWhere.append("( i.item_id {0} (\n{1}\n) )".format(operator, SQLAnyCats))
                 else: SQLWhere.append("( i.item_id == '-999999' )")
+
+
+
 
         _items = list()
         if data.get("withitems"): _items.append((data['withitems'], "IN"))

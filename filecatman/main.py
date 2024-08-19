@@ -44,6 +44,8 @@ class main():
     ## Command Options
     parser.add_argument("--withcategories", help=argparse.SUPPRESS, nargs="+", action="append", dest="withcategories")
     parser.add_argument("--withoutcategories", help=argparse.SUPPRESS, nargs="+", action="append", dest="withoutcategories")
+    parser.add_argument("--anytax", help=argparse.SUPPRESS, nargs="+", action="append", dest="anytax")
+    parser.add_argument("--catsearch", help=argparse.SUPPRESS, nargs="+", action="append", dest="catsearch")
     parser.add_argument("--taxonomies", "--tax", help=argparse.SUPPRESS, nargs="+", action="append", dest="taxonomies")
     parser.add_argument("--withouttaxonomies", "--nottax", help=argparse.SUPPRESS, nargs="+", action="append", dest="withouttaxonomies")
     parser.add_argument("--addcategories", help=argparse.SUPPRESS, nargs="+", action="append", dest="addcategories")
@@ -882,7 +884,9 @@ class main():
         if self.args.argwith:  self.filecatmanActions['search']['withcategories'] = self.args.argwith[0]
         if self.args.withitems: self.filecatmanActions['search']['withitems'] = self.args.withitems[0]
         if self.args.withoutitems:  self.filecatmanActions['search']['withoutitems'] = self.args.withoutitems[0]
-        elif self.args.withcategories: self.filecatmanActions['search']['withcategories'] = self.args.withcategories[0]
+        if self.args.withcategories: self.filecatmanActions['search']['withcategories'] = self.args.withcategories[0]
+        if self.args.anytax: self.filecatmanActions['search']['anytax'] = self.args.anytax[0]
+        if self.args.catsearch: self.filecatmanActions['search']['catsearch'] = self.args.catsearch[0]
         if self.args.argwithout: self.filecatmanActions['search']['withoutcategories'] = self.args.argwithout[0]
         elif self.args.withoutcategories: self.filecatmanActions['search']['withoutcategories'] = self.args.withoutcategories[0]
         if self.args.taxonomies: self.filecatmanActions['search']['withtaxonomies'] = self.args.taxonomies[0]
@@ -1185,6 +1189,8 @@ filecatman [options] {0} [phrase] [{0} options]
 --withoutdescription     Exclude description column with phrase
 --withcategories, --with [category id / taxonomy:name] ...  Include items with all these categories
 --withany [category id / taxonomy:name] ...  Include items with any of these categories
+--anytax [name] ...  Include items with any of these categories, searches all taxonomies
+--catsearch [phrase] ...  Include items with category name similar to this phrase
 --withoutcategories, --without [category id / taxonomy:name] ...  Exclude categories
 --withitems [item id / filepath] ...   Results must include these items
 --withoutitems [item id / filepath] ...    Results must exclude these items
